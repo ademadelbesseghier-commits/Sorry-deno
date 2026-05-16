@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ravyn Lenae - Love Me Not (Fond Vidéo)</title>
+    <title>Ravyn Lenae - Love Me Not (Paroles au Centre)</title>
     <style>
         body {
             margin: 0;
             overflow: hidden;
-            background-color: #730909
+            background-color: #000;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -22,20 +22,22 @@
             display: block;
             z-index: 1;
         }
-        /* Paroles corrigées et bien visibles */
+        /* POSITIONNEMENT PILE AU MILIEU DE L'ÉCRAN */
         #lyrics-container {
             position: absolute;
+            top: 50%; /* Aligné verticalement au centre */
+            left: 50%; /* Aligné horizontalement au centre */
+            transform: translate(-50%, -50%); /* Ajustement magique pour un centrage parfait */
             width: 85%;
             text-align: center;
-            color: #ffffff; /* Blanc pur pour une visibilité maximale */
+            color: #ffffff; /* Blanc pur pour briller */
             font-size: 1.6rem;
             font-weight: bold;
-            text-shadow: 0 0 15px #00bfff, 0 0 25px rgba(0, 191, 255, 0.6); /* Halo bleu éclatant */
-            z-index: 2; /* Placé au premier plan pour ne pas être caché par le cœur */
+            text-shadow: 0 0 15px #00bfff, 0 0 25px rgba(0, 191, 255, 0.6); /* Superbe halo bleu */
+            z-index: 2; /* Reste devant la vidéo et les particules */
             pointer-events: none;
             transition: opacity 0.25s ease;
             line-height: 1.4;
-            opacity: 1;
         }
         /* Bouton Play/Pause */
         #music-btn {
@@ -67,7 +69,7 @@
         <source src="fond.mp4" type="video/mp4">
     </video>
 
-    <button id="music-btn" onclick="toggleMusic()">🎵 Play "Love Me Not"</button>
+    <button id="music-btn" onclick="toggleMusic()">🎵 Play </button>
 
     <audio id="myAudio" src="musique.mp3" preload="auto"></audio>
 
@@ -78,7 +80,7 @@
     <script>
         // --- SYNCHRONISATION DES PAROLES ---
         const lyricsData = [
-            { time: 0, text: "🎵 Ravyn Lenae - Love Me Not 🎵" },
+            { time: 0, text: "🎵 Our song 🎵" },
             { time: 17, text: "See right now I need you, I'll meet you somewhere now" },
             { time: 21, text: "You up now, I see you, I get you, take care now" },
             { time: 24, text: "Slow down, be cool, I miss you, come here now" },
@@ -122,7 +124,7 @@
             { time: 181, text: "Oh, it's hard to leave you when I get you everywhere" },
             { time: 185, text: "All this time I'm thinking I'm strong enough to sink it, oh no" },
             { time: 191, text: "I don't need you, but I miss you, come here..." },
-            { time: 200, text: "🎵 ✨" }
+            { time: 200, text: "🎵 sorry ✨" }
         ];
 
         const audio = document.getElementById('myAudio');
@@ -142,7 +144,6 @@
             }
         }
 
-        // --- CORRECTION DU BUG D'AFFICHAGE ---
         audio.addEventListener('timeupdate', () => {
             const currentTime = audio.currentTime;
             let currentText = "";
@@ -153,7 +154,6 @@
                 }
             }
             
-            // Correction ici : on compare le innerHTML pour éviter les blocages de texte
             if (lyricsContainer.innerHTML !== currentText && currentText !== "") {
                 lyricsContainer.style.opacity = 0;
                 setTimeout(() => {
@@ -163,7 +163,7 @@
             }
         });
 
-        // --- CODE DU CŒUR DE PARTICULES (BLEU) ---
+        // --- CODE DU CŒUR DE PARTICULES D'ORIGINE (BLEU) ---
         const canvas = document.getElementById('heartCanvas');
         const ctx = canvas.getContext('2d');
 
