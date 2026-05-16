@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ravyn Lenae - Love Me Not (Interactif)</title>
+    <title>Ravyn Lenae - Love Me Not (Interactif Bleu)</title>
     <style>
         body {
             margin: 0;
@@ -27,31 +27,31 @@
             position: absolute;
             width: 85%;
             text-align: center;
-            color: rgba(255, 255, 255, 0.5);
+            color: rgba(255, 255, 255, 0.55);
             font-size: 1.6rem;
             font-weight: bold;
-            text-shadow: 0 0 15px rgba(244, 63, 94, 0.4);
+            text-shadow: 0 0 15px rgba(0, 191, 255, 0.6); /* Halo bleu brillant */
             z-index: 0;
             pointer-events: none;
             transition: all 0.3s ease;
             line-height: 1.4;
         }
-        /* Bouton Play/Pause */
+        /* Bouton Play/Pause discret */
         #music-btn {
             position: absolute;
             top: 20px;
             right: 20px;
             z-index: 10;
-            background: rgba(244, 63, 94, 0.2);
+            background: rgba(0, 119, 255, 0.2);
             color: white;
-            border: 1px solid rgba(244, 63, 94, 0.5);
+            border: 1px solid rgba(0, 119, 255, 0.5);
             padding: 12px 20px;
             border-radius: 25px;
             font-size: 0.9rem;
             font-weight: bold;
             backdrop-filter: blur(5px);
             cursor: pointer;
-            box-shadow: 0 0 10px rgba(244, 63, 94, 0.3);
+            box-shadow: 0 0 10px rgba(0, 119, 255, 0.3);
             transition: all 0.2s;
             -webkit-tap-highlight-color: transparent;
         }
@@ -66,7 +66,7 @@
 
     <audio id="myAudio" src="musique.mp3" preload="auto"></audio>
 
-    <div id="lyrics-container">Clique sur Play pour lancer l'expérience...</div>
+    <div id="lyrics-container">Clique sur Play pour lancer la surprise...</div>
 
     <canvas id="heartCanvas"></canvas>
 
@@ -127,7 +127,7 @@
         function toggleMusic() {
             if (audio.paused) {
                 audio.play().catch(e => {
-                    alert("Erreur : Vérifie que ton fichier s'appelle bien musique.mp3 et qu'il est fini d'uploader.");
+                    alert("Assure-toi que ton fichier s'appelle bien musique.mp3 sur ton GitHub.");
                     console.log(e);
                 });
                 musicBtn.innerText = "⏸️ Pause";
@@ -156,7 +156,7 @@
             }
         });
 
-        // --- CODE DU CŒUR ---
+        // --- CODE D'ORIGINE DU CŒUR DE PARTICULES (COULEUR BLEUE) ---
         const canvas = document.getElementById('heartCanvas');
         const ctx = canvas.getContext('2d');
 
@@ -208,9 +208,12 @@
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
                 this.size = Math.random() * 1.5 + 0.5;
-                const h = Math.random() * 25 + 335;
-                const s = Math.random() * 15 + 85;
-                const l = Math.random() * 20 + 60;
+                
+                // CONFIGURATION BLEUE : Teinte fixée entre 190 (Cyan) et 225 (Bleu Royal)
+                const h = Math.random() * 35 + 190; 
+                const s = Math.random() * 15 + 85; // Saturation forte pour une couleur vive
+                const l = Math.random() * 20 + 55; // Luminosité agréable
+                
                 this.color = `hsl(${h}, ${s}%, ${l}%)`;
                 this.speed = Math.random() * 0.04 + 0.02;
             }
