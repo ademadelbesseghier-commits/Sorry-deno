@@ -3,19 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ravyn Lenae - Love Me Not (Interactif Bleu)</title>
+    <title>Ravyn Lenae - Love Me Not (Fond Vidéo)</title>
     <style>
         body {
             margin: 0;
             overflow: hidden;
-            background-image: url('fond.jpg');
-            background-size: cover;
-            background-position: center;
+            background-color: #730909
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        /* Style pour la vidéo de fond */
+        #video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
         }
         canvas {
             position: absolute;
@@ -24,36 +32,37 @@
             display: block;
             z-index: 1;
         }
-        /* Paroles en arrière-plan (derrière le cœur) */
+        /* Paroles corrigées et bien visibles */
         #lyrics-container {
             position: absolute;
             width: 85%;
             text-align: center;
-            color: rgba(255, 255, 255, 0.55);
+            color: #ffffff; /* Blanc pur pour une visibilité maximale */
             font-size: 1.6rem;
             font-weight: bold;
-            text-shadow: 0 0 15px rgba(0, 191, 255, 0.6); /* Halo bleu brillant */
-            z-index: 0;
+            text-shadow: 0 0 15px #00bfff, 0 0 25px rgba(0, 191, 255, 0.6); /* Halo bleu éclatant */
+            z-index: 2; /* Placé au premier plan pour ne pas être caché par le cœur */
             pointer-events: none;
-            transition: all 0.3s ease;
+            transition: opacity 0.25s ease;
             line-height: 1.4;
+            opacity: 1;
         }
-        /* Bouton Play/Pause discret */
+        /* Bouton Play/Pause */
         #music-btn {
             position: absolute;
             top: 20px;
             right: 20px;
             z-index: 10;
-            background: rgba(0, 119, 255, 0.2);
+            background: rgba(0, 119, 255, 0.3);
             color: white;
-            border: 1px solid rgba(0, 119, 255, 0.5);
+            border: 1px solid rgba(0, 119, 255, 0.6);
             padding: 12px 20px;
             border-radius: 25px;
             font-size: 0.9rem;
             font-weight: bold;
             backdrop-filter: blur(5px);
             cursor: pointer;
-            box-shadow: 0 0 10px rgba(0, 119, 255, 0.3);
+            box-shadow: 0 0 10px rgba(0, 119, 255, 0.4);
             transition: all 0.2s;
             -webkit-tap-highlight-color: transparent;
         }
@@ -63,6 +72,10 @@
     </style>
 </head>
 <body>
+
+    <video id="video-background" autoplay loop muted playsinline>
+        <source src="fond.mp4" type="video/mp4">
+    </video>
 
     <button id="music-btn" onclick="toggleMusic()">🎵 Play "Love Me Not"</button>
 
@@ -90,15 +103,15 @@
             { time: 59, text: "Oh, it's hard to leave you when I get you everywhere" },
             { time: 63, text: "Oh, this time I'm thinking I'm strong enough to sink it, oh no" },
             { time: 68, text: "I don't need you, but I miss you, come here" },
-            { time: 72, text: "He love me, he loves me\nHe holds me tight then lets me go 🌸" },
-            { time: 78, text: "He love me, he loves me\nHe holds me tight then lets me go" },
+            { time: 72, text: "He love me, he loves me<br>He holds me tight then lets me go 🌸" },
+            { time: 78, text: "He love me, he loves me<br>He holds me tight then lets me go" },
             { time: 83, text: "Soon as you leave me, we always lose connection" },
             { time: 87, text: "It's getting messy, I feed your affection" },
             { time: 91, text: "Don't loosen your grip, got a hold on me now forever" },
             { time: 97, text: "Let's get back together" },
             { time: 100, text: "Don't take it so far away" },
             { time: 103, text: "I pray to God we don't break" },
-            { time: 106, text: "I want you to take me up and down\nAround and around again" },
+            { time: 106, text: "I want you to take me up and down<br>Around and around again" },
             { time: 111, text: "And know it's hard to say, but I wish you were right here" },
             { time: 115, text: "Oh, it's hard to leave you when I get you everywhere" },
             { time: 119, text: "All this time I'm thinking we could never be a pair, oh no" },
@@ -107,10 +120,10 @@
             { time: 131, text: "Oh, it's hard to leave you when I get you everywhere" },
             { time: 135, text: "Oh, this time I'm thinking I'm strong enough to sink it, oh no" },
             { time: 140, text: "I don't need you, but I miss you, come here" },
-            { time: 144, text: "He love me not, he loves me\nHe holds me tight then lets me go" },
-            { time: 150, text: "He love me not, he loves me\nHe holds me tight then lets me go" },
-            { time: 154, text: "He loves me not, he loves me\nHe holds me tight then lets me go" },
-            { time: 158, text: "He love me not, he loves me\nHe holds me tight then let me go 💖" },
+            { time: 144, text: "He love me not, he loves me<br>He holds me tight then lets me go" },
+            { time: 150, text: "He love me not, he loves me<br>He holds me tight then lets me go" },
+            { time: 154, text: "He loves me not, he loves me<br>He holds me tight then lets me go" },
+            { time: 158, text: "He love me not, he loves me<br>He holds me tight then let me go 💖" },
             { time: 162, text: "You got to say that you're sorry at the end of the night" },
             { time: 166, text: "Wake up in the morning, everything's all right" },
             { time: 170, text: "At the end of the story, you're holding me tight" },
@@ -129,7 +142,7 @@
         function toggleMusic() {
             if (audio.paused) {
                 audio.play().catch(e => {
-                    alert("Assure-toi que ton fichier s'appelle bien musique.mp3 sur ton GitHub.");
+                    alert("Assure-toi que ton fichier s'appelle bien musique.mp3.");
                     console.log(e);
                 });
                 musicBtn.innerText = "⏸️ Pause";
@@ -139,6 +152,7 @@
             }
         }
 
+        // --- CORRECTION DU BUG D'AFFICHAGE ---
         audio.addEventListener('timeupdate', () => {
             const currentTime = audio.currentTime;
             let currentText = "";
@@ -149,16 +163,17 @@
                 }
             }
             
-            if (lyricsContainer.innerText !== currentText && currentText !== "") {
+            // Correction ici : on compare le innerHTML pour éviter les blocages de texte
+            if (lyricsContainer.innerHTML !== currentText && currentText !== "") {
                 lyricsContainer.style.opacity = 0;
                 setTimeout(() => {
-                    lyricsContainer.innerHTML = currentText.replace('\n', '<br>');
+                    lyricsContainer.innerHTML = currentText;
                     lyricsContainer.style.opacity = 1;
-                }, 150);
+                }, 120);
             }
         });
 
-        // --- CODE D'ORIGINE DU CŒUR DE PARTICULES (COULEUR BLEUE) ---
+        // --- CODE DU CŒUR DE PARTICULES (BLEU) ---
         const canvas = document.getElementById('heartCanvas');
         const ctx = canvas.getContext('2d');
 
@@ -211,10 +226,9 @@
                 this.y = Math.random() * canvas.height;
                 this.size = Math.random() * 1.5 + 0.5;
                 
-                // CONFIGURATION BLEUE : Teinte fixée entre 190 (Cyan) et 225 (Bleu Royal)
                 const h = Math.random() * 35 + 190; 
-                const s = Math.random() * 15 + 85; // Saturation forte pour une couleur vive
-                const l = Math.random() * 20 + 55; // Luminosité agréable
+                const s = Math.random() * 15 + 85;
+                const l = Math.random() * 20 + 55;
                 
                 this.color = `hsl(${h}, ${s}%, ${l}%)`;
                 this.speed = Math.random() * 0.04 + 0.02;
